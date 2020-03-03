@@ -26,9 +26,11 @@
                     </div>
                     <button class="btn btn-primary" id="btn-generate">Generate</button>
                     
-                    <div class="my-3"><input class="form-control" id="meeting-url"></div>
+                    <div class="my-3">PC <input class="form-control" id="meeting-url"></div>
+                    <div class="my-3">Mobile <input class="form-control" id="meeting-url-mobile"></div>
                     <small class="form-text text-muted">You may save this URL to your Notes app, calendar app or a Word document. Click it and you'll join the meeting.</small>
-                    <div class="my-3"><a id="meeting-url-a"></a></div>
+                    <div class="my-3">PC <a id="meeting-url-a"></a></div>
+                    <div class="my-3">Mobile <a id="meeting-url-a-mobile"></a></div>
                 </div>
             </div>
         </div>
@@ -47,6 +49,10 @@
                     $("#meeting-url").val(result)
                     $("#meeting-url-a").attr("href", result)
                     $("#meeting-url-a").text(result)
+                    const result_mobile = `zoomus://zoom.us/join?confno=${id}&pwd=${pwd}&uname=${encodeURIComponent(name)}`
+                    $("#meeting-url-mobile").val(result_mobile)
+                    $("#meeting-url-a-mobile").attr("href", result_mobile)
+                    $("#meeting-url-a-mobile").text(result_mobile)
                 })
             })
         </script>
