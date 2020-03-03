@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ZOOM URL Generator</title>
+        <link rel="stylesheet" href="./bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1>Generate Zoom URL</h1>
+                    <div class="form-group">
+                        <label for="meeting-id">Meeting ID</label>
+                        <input class="form-control" id="meeting-id">
+                        <small class="form-text text-muted">"852-901-5944" is Alex Chi's room. You may test the URL with this meeting id.</small>
+                        <small class="form-text text-muted">This field accept all formats including "852-901-5944", "852 901 5944" or "8529015944". We'll strip all non-digit characters for you.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="meeting-password">Password</label>
+                        <input class="form-control" id="meeting-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="meeting-name">Name when Joining</label>
+                        <input class="form-control" id="meeting-name">
+                        <small class="form-text text-muted">This is your name after joining the conference room. For English class, you may use your English name + Student ID. In this way you don't have to rename every time you enter the conf room.</small>
+                    </div>
+                    <button class="btn btn-primary" id="btn-generate">Generate</button>
+                    
+                    <div class="my-3"><input class="form-control" id="meeting-url"></div>
+                    <small class="form-text text-muted">You may save this URL to your Notes app, calendar app or a Word document. Click it and you'll join the meeting.</small>
+                    <div class="my-3"><a id="meeting-url-a"></a></div>
+                </div>
+            </div>
+        </div>
+        <script src="./jquery-3.4.1.min.js"></script>
+        <script>
+            $(document).ready(() => {
+                $("#meeting-id").val("852-901-5944")
+                $("#meeting-password").val("")
+                $("#meeting-name").val("Alex Chi - 51800000000")
+
+                $("#btn-generate").click(() => {
+                    const id = $("#meeting-id").val().replace(/\D/g,'')
+                    const pwd = $("#meeting-password").val().replace(/\D/g,'')
+                    const name = $("#meeting-name").val().trim()
+                    const result = `zoommtg://zoom.us/join?confno=${id}&pwd=${pwd}&uname=${encodeURIComponent(name)}`
+                    $("#meeting-url").val(result)
+                    $("#meeting-url-a").attr("href", result)
+                    $("#meeting-url-a").text(result)
+                })
+            })
+        </script>
+    </body>
+</html>
