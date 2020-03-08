@@ -14,7 +14,7 @@
                     const device = localStorage.getItem("device")
                     if (!device) localStorage.setItem("device", confirm("using mobile zoom?"))
                     const prefix = localStorage.getItem("device") === true ? "zoomus" : "zoommtg"
-                    const result = `${prefix}://zoom.us/join?confno=${encodeURIComponent(vars.id)}&pwd=${encodeURIComponent(vars.pwd)}&uname=${encodeURIComponent(vars.uname)}`
+                    const result = `${prefix}://zoom.us/join?confno=${encodeURIComponent(vars.confno)}&pwd=${encodeURIComponent(vars.pwd)}&uname=${encodeURIComponent(vars.uname)}`
                     console.log(result)
                     window.location.replace(result)
                 }
