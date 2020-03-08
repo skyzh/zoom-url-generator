@@ -4,6 +4,22 @@
         <title>ZOOM URL Generator</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script>
+            (function() {
+                const vars = {}
+                const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                    vars[key] = value
+                })
+                if (vars.jump) {
+                    const device = localStorage.getItem("device")
+                    if (!device) localStorage.setItem("device", confirm("using mobile zoom?"))
+                    const prefix = localStorage.getItem("device") === true ? "zoomus" : "zoommtg"
+                    const result = `${prefix}://zoom.us/join?confno=${encodeURIComponent(vars.id)}&pwd=${encodeURIComponent(vars.pwd)}&uname=${encodeURIComponent(vars.uname)}`
+                    console.log(result)
+                    window.location.replace(result)
+                }
+            })()
+        </script>
         <link rel="stylesheet" href="./bootstrap.min.css">
     </head>
     <body>
@@ -33,6 +49,10 @@
                     <small class="form-text text-muted">You may save this URL to your Notes app, calendar app or a Word document. Click it and you'll join the meeting.</small>
                     <div class="my-3">PC <a id="meeting-url-a"></a></div>
                     <div class="my-3">Mobile <a id="meeting-url-a-mobile"></a></div>
+
+                    <button class="btn btn-primary" id="btn-clear">Clear LocalStorage</button>
+                    <small class="form-text text-muted">If you're using this web page as URL redirector in sjtu-class-table-generator, and you select wrong device when being prompted, you may click this button to clear information.</small>
+                    <small class="form-text text-info" id="text-info"></small>
                 </div>
             </div>
         </div>
@@ -42,7 +62,10 @@
                 $("#meeting-id").val("852-901-5944")
                 $("#meeting-password").val("")
                 $("#meeting-name").val("Alex Chi - 51800000000")
-
+                $("#btn-clear").click(() => {
+                    localStorage.clear()
+                    $("#text-info").text("information reset succeed")
+                })
                 $("#btn-generate").click(() => {
                     const id = $("#meeting-id").val().replace(/\D/g,'')
                     const pwd = $("#meeting-password").val().replace(/\D/g,'')
