@@ -46,9 +46,12 @@
                     
                     <div class="my-3">PC <input class="form-control" id="meeting-url"></div>
                     <div class="my-3">Mobile <input class="form-control" id="meeting-url-mobile"></div>
+                    <div class="my-3">Redirect <input class="form-control" id="meeting-url-redirect"></div>
                     <small class="form-text text-muted">You may save this URL to your Notes app, calendar app or a Word document. Click it and you'll join the meeting.</small>
+                    <small class="form-text text-muted">Redirect URL will automatically jump you to Zoom Mobile URL or Zoom PC URL. By using redirect URL, you will need to select your device type upon first visit. You may reset this config at any time by clicking "Clear LocalStorage"</small>
                     <div class="my-3">PC <a id="meeting-url-a"></a></div>
                     <div class="my-3">Mobile <a id="meeting-url-a-mobile"></a></div>
+                    <div class="my-3">Redirect <a id="meeting-url-a-redirect"></a></div>
 
                     <button class="btn btn-primary" id="btn-clear">Clear LocalStorage</button>
                     <small class="form-text text-muted">If you're using this web page as URL redirector in sjtu-class-table-generator, and you select wrong device when being prompted, you may click this button to clear information.</small>
@@ -78,6 +81,10 @@
                     $("#meeting-url-mobile").val(result_mobile)
                     $("#meeting-url-a-mobile").attr("href", result_mobile)
                     $("#meeting-url-a-mobile").text(result_mobile)
+                    const redirect_url = `https://skyzh.github.io/zoom-url-generator/?jump=true&confno=${id}&pwd=${pwd}&uname=${encodeURIComponent(name)}`
+                    $("#meeting-url-redirect").val(redirect_url)
+                    $("#meeting-url-a-redirect").attr("href", redirect_url)
+                    $("#meeting-url-a-redirect").text(redirect_url)              
                 })
             })
         </script>
