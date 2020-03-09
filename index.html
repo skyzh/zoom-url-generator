@@ -14,7 +14,7 @@
                     const device = localStorage.getItem("device")
                     if (!device) localStorage.setItem("device", confirm("using mobile zoom?"))
                     const prefix = localStorage.getItem("device") == "true" ? "zoomus" : "zoommtg"
-                    const result = `${prefix}://zoom.us/join?confno=${encodeURIComponent(vars.confno)}&pwd=${encodeURIComponent(vars.pwd)}&uname=${encodeURIComponent(vars.uname)}`
+                    const result = `${prefix}://zoom.us/join?confno=${encodeURIComponent(decodeURIComponent(vars.confno))}&pwd=${encodeURIComponent(decodeURIComponent(vars.pwd))}&uname=${encodeURIComponent(decodeURIComponent(vars.uname))}`
                     console.log(result)
                     window.location.replace(result)
                 }
@@ -54,8 +54,8 @@
                     <div class="my-3">Redirect <a id="meeting-url-a-redirect"></a></div>
 
                     <button class="btn btn-primary" id="btn-clear">Clear LocalStorage</button>
-                    <small class="form-text text-muted">If you're using this web page as URL redirector in sjtu-class-table-generator, and you select wrong device when being prompted, you may click this button to clear information.</small>
                     <small class="form-text text-info" id="text-info"></small>
+                    <small class="form-text text-muted">If you're using this web page as URL redirector in sjtu-class-table-generator, and you select wrong device when being prompted, you may click this button to clear information.</small>
                 </div>
             </div>
         </div>
