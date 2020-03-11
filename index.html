@@ -16,6 +16,10 @@
                     const prefix = localStorage.getItem("device") == "true" ? "zoomus" : "zoommtg"
                     const result = `${prefix}://zoom.us/join?confno=${encodeURIComponent(decodeURIComponent(vars.confno))}&pwd=${encodeURIComponent(decodeURIComponent(vars.pwd))}&uname=${encodeURIComponent(decodeURIComponent(vars.uname))}`
                     console.log(result)
+                    var a = document.createElement("a")
+                    a.innerText = "If nothing happens, click me to reset settings."
+                    a.setAttribute("href", "https://skyzh.github.io/zoom-url-generator/")
+                    document.write(a.outerHTML)
                     window.location.replace(result)
                 }
             })()
