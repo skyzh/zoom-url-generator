@@ -18,7 +18,7 @@
                     console.log(result)
                     var a = document.createElement("a")
                     var p = document.createElement("p")
-                    p.innerText = `Conf ID: ${vars.confno}`
+                    p.innerText = `Conf ID: ${vars.confno}, Redirect Mode: ${device ? 'Mobile' : 'PC'}`
                     a.innerText = "If nothing happens, click me to review settings."
                     a.setAttribute("href", "https://skyzh.github.io/zoom-url-generator/")
                     document.write(p.outerHTML)
