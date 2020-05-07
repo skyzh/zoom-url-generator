@@ -17,8 +17,11 @@
                     const result = `${prefix}://zoom.us/join?confno=${encodeURIComponent(decodeURIComponent(vars.confno))}&pwd=${encodeURIComponent(decodeURIComponent(vars.pwd))}&uname=${encodeURIComponent(decodeURIComponent(vars.uname))}`
                     console.log(result)
                     var a = document.createElement("a")
-                    a.innerText = "If nothing happens, click me to reset settings."
+                    var p = document.createElement("p")
+                    p.innerText = `Conf ID: ${vars.confno}`
+                    a.innerText = "If nothing happens, click me to review settings."
                     a.setAttribute("href", "https://skyzh.github.io/zoom-url-generator/")
+                    document.write(p.outerHTML)
                     document.write(a.outerHTML)
                     window.location.replace(result)
                 }
@@ -72,6 +75,8 @@
         <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
         <!-- <script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
         <script>
+            const BASE = "https://skyzh.github.io/zoom-url-generator"
+            // const BASE = ""
             $(document).ready(() => {
                 $("#meeting-id").val("852-901-5944")
                 $("#meeting-password").val("")
@@ -92,7 +97,7 @@
                     $("#meeting-url-mobile").val(result_mobile)
                     $("#meeting-url-a-mobile").attr("href", result_mobile)
                     $("#meeting-url-a-mobile").text(result_mobile)
-                    const redirect_url = `https://skyzh.github.io/zoom-url-generator/?jump=true&confno=${id}&pwd=${pwd}&uname=${encodeURIComponent(name)}`
+                    const redirect_url = `${BASE}/?jump=true&confno=${id}&pwd=${pwd}&uname=${encodeURIComponent(name)}`
                     $("#meeting-url-redirect").val(redirect_url)
                     $("#meeting-url-a-redirect").attr("href", redirect_url)
                     $("#meeting-url-a-redirect").text(redirect_url)              
